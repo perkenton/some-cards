@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
+import { NBS } from '../../common/constants';
 
 
 export default function Header() {
@@ -8,7 +9,8 @@ export default function Header() {
     <header className={ styles.header }>
       <nav className={ styles.menu }>
         <p className={ styles.logo }>Some cards</p>
-        <p className={ styles.inform }>Lorem ipsum dolor sit amet.</p>
+        <p className={ styles.inform }>В проекте используется API от{NBS}<a href='https://www.pexels.com' target='_blank' rel='noreferrer' className={ styles.link }>Pexels</a> с{NBS}хорошей <a
+          href='https://www.pexels.com/ru-ru/api/documentation' target='_blank' rel='noreferrer' className={ styles.link }>документацией</a></p>
       </nav>
     </header>
   )

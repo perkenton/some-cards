@@ -24,10 +24,34 @@
   margin: 0;
 }
 .inform {
+  max-width: 300px;
   font-size: 14px;
   line-height: 1.2;
   font-weight: 300;
-  color: var(--primary-color);
-  margin-top: 14px;
+  text-align: right;
+  color: var(--system-black);
+  margin-top: 0;
   margin-bottom: 0;
+}
+.link {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--system-black);
+  text-decoration: none;
+  transition: .2s linear;
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
+@media (max-width: 530px) {
+  .menu {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .inform {
+    text-align: center;
+  }
 }
