@@ -1,60 +1,85 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useTypedSelector } from '../../common/utils/useTypedSelector';
+import { useActions } from '../../common/utils/useActions';
+import { Photo } from '../../common/types/photos';
 import styles from './Main.module.scss';
+import Loader from '../../common/src/components/Loader/Loader';
 import Card from '../Card/Card';
 import CardsList from '../CardsList/CardsList';
+import Switcher from '../../common/src/components/Switcher/Switcher';
+import ErrorMessage from '../../common/src/components/ErrorMessage/ErrorMessage';
 
 
 export default function Main() {
-  const initialCards = [
-    {
-      name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, vel. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, vel.',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
-    {
-      name: 'Нургуш',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/khrebet-nurgush.jpg'
-    },
-    {
-      name: 'Тулиновка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/tulinovka.jpg'
-    },
-    {
-      name: 'Остров Желтухина',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/zheltukhin-island.jpg'
-    },
-    {
-      name: 'Владивосток',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/vladivostok.jpg'
-    }
-  ];
+  const { photos, isLoading, error, page, isDisplayLikedPhotos } = useTypedSelector(state => state.photos);
+  const { fetchPhotosAC, setPhotosPageAC, removePhotoAC, toggleLikeAC, toggleDisplayLikedPhotosAC } = useActions();
+  const currentPhotos = filterPhotos(photos, isDisplayLikedPhotos);
 
+  function filterPhotos(photosArray: Photo[], value: boolean) {
+    if(value) return photosArray.filter((photo: Photo) => photo.liked);
+    return photosArray;
+  }
+
+  function getPhotos() {
+    fetchPhotosAC(page);
+  }
+  function nextPage() {
+    setPhotosPageAC(page + 1);
+  }
+  function removePhoto(cardId: number) {
+    removePhotoAC(cardId);
+  }
+  function toggleLike(cardId: number) {
+    toggleLikeAC(cardId);
+  }
+  function showLikedPhotos(value: boolean) {
+    toggleDisplayLikedPhotosAC(value);
+  }
+
+  useEffect(() => {
+    getPhotos();
+  }, [page])
 
 
   return (
     <div className={ styles.main }>
-      <CardsList>
-        { initialCards.map((card) => <Card image={ card.link } caption={ card.name } />) }
-      </CardsList>
+      <div className={ styles.filterBlock }>
+        <p className={ styles.filterText }>Показать понравившиеся фотографии</p>
+        <Switcher onChange={ showLikedPhotos } />
+      </div>
+      {
+        !!currentPhotos.length ?
+        <>
+          <CardsList>
+            {
+              currentPhotos.map((photo: Photo) => {
+                return (
+                  <Card
+                    key={ photo.id }
+                    id={ photo.id }
+                    url={ photo.url }
+                    image={ photo.src.medium }
+                    photographer={ photo.photographer }
+                    photographer_url={ photo.photographer_url }
+                    alt={ photo.alt }
+                    liked={ photo.liked }
+                    removePhoto={ removePhoto }
+                    toggleLike={ toggleLike }
+                  />
+                )
+              })
+            }
+          </CardsList>
+          { isLoading ? <Loader/> : <button className={ styles.moreButton } onClick={ nextPage }>Ещё фотографии</button> }
+          <ErrorMessage error={ error } />
+        </>
+        :
+        <>
+          <p className={ styles.informText }>Нет фотографий =(</p>
+          <ErrorMessage error={ error } />
+          { isLoading && !photos.length && <Loader/> }
+        </>
+      }
     </div>
   )
 }
