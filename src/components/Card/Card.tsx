@@ -14,8 +14,8 @@ export default function Card(props: {
   photographer_url: string,
   alt: string,
   liked?: boolean,
-  removeCard: (cardId: number) => void,
-  likeCard: (cardId: number) => void,
+  removePhoto: (cardId: number) => void,
+  toggleLike: (cardId: number) => void,
 }) {
   const heartIconClass = cn(
     styles.icon,
@@ -32,8 +32,8 @@ export default function Card(props: {
         <a className={ styles.photographer } href={ props.photographer_url } target='_blank' title='Страница фотографа' rel='noreferrer'>{ props.photographer }</a>
         <span className={ styles.caption } title={ props.alt }>{ props.alt }</span>
         <div className={ styles.iconsBlock }>
-          <button className={ heartIconClass } title='Лайкнуть' onClick={ () => props.likeCard(props.id) }><Heart width='16' height='14'/></button>
-          <button className={ styles.icon } title='Удалить' onClick={ () => props.removeCard(props.id) }><Trash width='14' height='16'/></button>
+          <button className={ heartIconClass } title='Лайкнуть' onClick={ () => props.toggleLike(props.id) }><Heart width='16' height='14'/></button>
+          <button className={ styles.icon } title='Удалить' onClick={ () => props.removePhoto(props.id) }><Trash width='14' height='16'/></button>
           <a className={ styles.icon } href={ props.url } target='_blank' title='Посмотреть на сайте' rel='noreferrer'><NewTab /></a>
         </div>
       </figcaption>

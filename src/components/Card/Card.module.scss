@@ -89,8 +89,8 @@
   }
 }
 .isLiked {
-  color: var(--primary-color-opacity);
+  color: var(--primary-color);
   & svg {
-    fill: var(--primary-color-opacity);
+    fill: var(--primary-color);
   }
 }
