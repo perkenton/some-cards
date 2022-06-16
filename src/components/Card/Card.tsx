@@ -7,15 +7,15 @@ import NewTab from '../../common/src/assets/icons/NewTab';
 
 
 export default function Card(props: {
-  id: number,
+  id: string,
   url: string,
   image: string,
-  photographer: string,
-  photographer_url: string,
-  alt: string,
+  photographerName: string,
+  photographerProfile: string,
+  description: string | null,
   liked?: boolean,
-  removePhoto: (cardId: number) => void,
-  toggleLike: (cardId: number) => void,
+  removePhoto: (cardId: string) => void,
+  toggleLike: (cardId: string) => void,
 }) {
   const heartIconClass = cn(
     styles.icon,
