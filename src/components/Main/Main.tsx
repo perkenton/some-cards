@@ -57,12 +57,12 @@ export default function Main() {
                   <Card
                     key={ photo.id }
                     id={ photo.id }
-                    url={ photo.url }
-                    image={ photo.src.medium }
-                    photographer={ photo.photographer }
-                    photographer_url={ photo.photographer_url }
-                    alt={ photo.alt }
-                    liked={ photo.liked }
+                    url={ photo.links.html }
+                    image={ photo.urls.small }
+                    photographerName={ photo.user.name }
+                    photographerProfile={ photo.user.links.html }
+                    description={ photo.description }
+                    liked={ photo.liked_by_user }
                     removePhoto={ removePhoto }
                     toggleLike={ toggleLike }
                   />
