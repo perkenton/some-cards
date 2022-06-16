@@ -26,11 +26,11 @@ export default function Card(props: {
   return (
     <figure className={ styles.card }>
       <div className={ styles.imageWrapper }>
-        <img src={ props.image } alt={ props.alt } className={ styles.image } />
+        <img src={ props.image } alt={ props.description || 'Фотография' } className={ styles.image } />
       </div>
       <figcaption className={ styles.figcaption }>
-        <a className={ styles.photographer } href={ props.photographer_url } target='_blank' title='Страница фотографа' rel='noreferrer'>{ props.photographer }</a>
-        <span className={ styles.caption } title={ props.alt }>{ props.alt }</span>
+        <a className={ styles.photographer } href={ props.photographerProfile } target='_blank' title='Страница фотографа' rel='noreferrer'>{ props.photographerName }</a>
+        { props.description && <span className={ styles.caption } title={ props.description || undefined }>{ props.description }</span> }
         <div className={ styles.iconsBlock }>
           <button className={ heartIconClass } title='Лайкнуть' onClick={ () => props.toggleLike(props.id) }><Heart width='16' height='14'/></button>
           <button className={ styles.icon } title='Удалить' onClick={ () => props.removePhoto(props.id) }><Trash width='14' height='16'/></button>
