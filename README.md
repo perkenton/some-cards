@@ -22,3 +22,6 @@
 - SASS
 - Axios
 - API от [Pexels](https://www.pexels.com) ([документация](https://www.pexels.com/ru-ru/api/documentation))
+
+## TODO
+Pexels сдох. Ищу другой API.
