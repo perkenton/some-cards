@@ -16,7 +16,7 @@ export default function Main() {
   const currentPhotos = filterPhotos(photos, isDisplayLikedPhotos);
 
   function filterPhotos(photosArray: Photo[], value: boolean) {
-    if(value) return photosArray.filter((photo: Photo) => photo.liked);
+    if(value) return photosArray.filter((photo: Photo) => photo.liked_by_user);
     return photosArray;
   }
 
