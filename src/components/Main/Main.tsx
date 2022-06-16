@@ -26,10 +26,10 @@ export default function Main() {
   function nextPage() {
     setPhotosPageAC(page + 1);
   }
-  function removePhoto(cardId: number) {
+  function removePhoto(cardId: string) {
     removePhotoAC(cardId);
   }
-  function toggleLike(cardId: number) {
+  function toggleLike(cardId: string) {
     toggleLikeAC(cardId);
   }
   function showLikedPhotos(value: boolean) {
