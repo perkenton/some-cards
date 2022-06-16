@@ -22,7 +22,7 @@ export const PhotosReducer = (state: PhotosState = initialState, action: PhotosA
        return { ...state, photos: [...state.photos.filter((photo: Photo) => photo.id !== action.id)] }
      case PhotosActionTypes.TOGGLE_LIKE:
        return { ...state, photos: [...state.photos.map((photo: Photo) => {
-           if (photo.id === action.id) return { ...photo, liked: !photo.liked }
+           if (photo.id === action.id) return { ...photo, liked_by_user: !photo.liked_by_user }
            return photo;
          })]}
      case PhotosActionTypes.TOGGLE_DISPLAY_LIKED_PHOTOS:

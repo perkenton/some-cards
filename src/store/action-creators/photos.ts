@@ -7,8 +7,8 @@ export const fetchPhotosAC = (page: number) => {
   return async (dispatch: Dispatch<PhotosActions>) => {
     try {
       dispatch({ type: PhotosActionTypes.FETCH_PHOTOS });
-      const response = await instance.get('curated', {params: { per_page: 10, page: page }});
-      dispatch({ type: PhotosActionTypes.FETCH_PHOTOS_SUCCESS, photos: response.data.photos })
+      const response = await instance.get('/photos/', {params: { per_page: 10, page: page }});
+      dispatch({ type: PhotosActionTypes.FETCH_PHOTOS_SUCCESS, photos: response.data })
     } catch (error: any) {
       dispatch({
         type: PhotosActionTypes.FETCH_PHOTOS_ERROR,
@@ -20,8 +20,8 @@ export const fetchPhotosAC = (page: number) => {
 
 export const setPhotosPageAC = (page: number): PhotosActions => ({ type: PhotosActionTypes.SET_PHOTOS_PAGE, page: page });
 
-export const removePhotoAC = (id: number): PhotosActions => ({ type: PhotosActionTypes.REMOVE_PHOTO, id: id });
+export const removePhotoAC = (id: string): PhotosActions => ({ type: PhotosActionTypes.REMOVE_PHOTO, id: id });
 
-export const toggleLikeAC = (id: number): PhotosActions => ({ type: PhotosActionTypes.TOGGLE_LIKE, id: id });
+export const toggleLikeAC = (id: string): PhotosActions => ({ type: PhotosActionTypes.TOGGLE_LIKE, id: id });
 
 export const toggleDisplayLikedPhotosAC = (value: boolean): PhotosActions => ({ type: PhotosActionTypes.TOGGLE_DISPLAY_LIKED_PHOTOS, displayLikedPhotos: value });

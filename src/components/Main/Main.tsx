@@ -16,7 +16,7 @@ export default function Main() {
   const currentPhotos = filterPhotos(photos, isDisplayLikedPhotos);
 
   function filterPhotos(photosArray: Photo[], value: boolean) {
-    if(value) return photosArray.filter((photo: Photo) => photo.liked);
+    if(value) return photosArray.filter((photo: Photo) => photo.liked_by_user);
     return photosArray;
   }
 
@@ -26,10 +26,10 @@ export default function Main() {
   function nextPage() {
     setPhotosPageAC(page + 1);
   }
-  function removePhoto(cardId: number) {
+  function removePhoto(cardId: string) {
     removePhotoAC(cardId);
   }
-  function toggleLike(cardId: number) {
+  function toggleLike(cardId: string) {
     toggleLikeAC(cardId);
   }
   function showLikedPhotos(value: boolean) {
@@ -57,12 +57,12 @@ export default function Main() {
                   <Card
                     key={ photo.id }
                     id={ photo.id }
-                    url={ photo.url }
-                    image={ photo.src.medium }
-                    photographer={ photo.photographer }
-                    photographer_url={ photo.photographer_url }
-                    alt={ photo.alt }
-                    liked={ photo.liked }
+                    url={ photo.links.html }
+                    image={ photo.urls.small }
+                    photographerName={ photo.user.name }
+                    photographerProfile={ photo.user.links.html }
+                    description={ photo.description }
+                    liked={ photo.liked_by_user }
                     removePhoto={ removePhoto }
                     toggleLike={ toggleLike }
                   />

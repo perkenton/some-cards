@@ -1,25 +1,116 @@
-export type Src = {
-  original: string,
-  large2x: string,
-  large: string,
-  medium: string,
+export type Urls = {
+  raw: string,
+  full: string,
+  regular: string,
   small: string,
-  portrait: string,
-  landscape: string,
-  tiny: string,
+  thumb: string,
+  small_s3: string,
 }
+
+export type PhotosLinks = {
+  self: string,
+  html: string,
+  download: string,
+  download_location: string,
+}
+
+export type Sponsor = {
+  id: string,
+  updated_at: string | null,
+  username: string,
+  name: string,
+  first_name: string | null,
+  last_name: string | null,
+  twitter_username: string | null,
+  portfolio_url: string | null,
+  bio: string | null,
+  location: string | null,
+}
+export type SponsorshipLinks = {
+  self: string,
+  html: string,
+  photos: string,
+  likes: string,
+  portfolio: string,
+  following: string,
+  followers: string,
+}
+export type ProfileImage = {
+  small: string,
+  medium: string,
+  large: string,
+}
+export type Social = {
+  instagram_username: string | null,
+  portfolio_url: string | null,
+  twitter_username: string | null,
+  paypal_email: string | null,
+}
+export type Sponsorship = {
+  impression_urls: string[],
+  tagline: string,
+  tagline_url: string,
+  sponsor: Sponsor,
+  links: SponsorshipLinks,
+  profile_image: ProfileImage,
+  instagram_username: string | null,
+  total_collections: number,
+  total_likes: number,
+  total_photos: number,
+  accepted_tos: boolean,
+  for_hire: boolean,
+  social: Social,
+}
+
+export type BusinessWork = {
+  status: string,
+  approved_on: string,
+}
+export type TopicSubmissions = {
+  'business-work': BusinessWork,
+}
+
+export type UserLinks = {
+  self: string,
+  html: string,
+  photos: string,
+  likes: string,
+  portfolio: string | null,
+  following: string | null,
+  followers: string | null,
+}
+export type User = Sponsor & {
+  links: UserLinks,
+  profile_image: ProfileImage,
+  instagram_username: string | null,
+  total_collections: number,
+  total_likes: number,
+  total_photos: number,
+  accepted_tos: boolean,
+  for_hire: boolean,
+  social: Social,
+}
+
 export type Photo = {
-  id: number,
+  id: string,
+  created_at: string,
+  updated_at: string | null,
+  promoted_at: string | null,
   width: number,
   height: number,
-  url: string,
-  photographer: string,
-  photographer_url: string,
-  photographer_id: number,
-  avg_color: string,
-  src: Src,
-  liked: boolean,
-  alt: string,
+  color: string,
+  blur_hash: string,
+  description: string | null,
+  alt_description: string | null,
+  urls: Urls,
+  links: PhotosLinks,
+  categories: string[],
+  likes: number,
+  liked_by_user: boolean,
+  current_user_collections: string[],
+  sponsorship: Sponsorship,
+  topic_submissions: TopicSubmissions,
+  user: User,
 }
 
 export type PhotosState = {
@@ -57,11 +148,11 @@ type SetPhotosPage = {
 }
 type RemovePhoto = {
   type: PhotosActionTypes.REMOVE_PHOTO,
-  id: number,
+  id: string,
 }
 type ToggleLike = {
   type: PhotosActionTypes.TOGGLE_LIKE,
-  id: number,
+  id: string,
 }
 type ToggleDisplayLikedPhotos = {
   type: PhotosActionTypes.TOGGLE_DISPLAY_LIKED_PHOTOS,
