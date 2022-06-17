@@ -25,3 +25,5 @@ export const removePhotoAC = (id: string): PhotosActions => ({ type: PhotosActio
 export const toggleLikeAC = (id: string): PhotosActions => ({ type: PhotosActionTypes.TOGGLE_LIKE, id: id });
 
 export const toggleDisplayLikedPhotosAC = (value: boolean): PhotosActions => ({ type: PhotosActionTypes.TOGGLE_DISPLAY_LIKED_PHOTOS, displayLikedPhotos: value });
+
+export const toggleShowImagePopupAC = (value: string | null): PhotosActions => ({ type: PhotosActionTypes.TOGGLE_SHOW_IMAGE_POPUP, value: value });
