@@ -9,13 +9,15 @@ import NewTab from '../../common/src/assets/icons/NewTab';
 export default function Card(props: {
   id: string,
   url: string,
-  image: string,
+  imageSmall: string,
+  imageRegular: string,
   photographerName: string,
   photographerProfile: string,
   description: string | null,
   liked?: boolean,
   removePhoto: (cardId: string) => void,
   toggleLike: (cardId: string) => void,
+  toggleImagePopup: (value: string) => void,
 }) {
   const heartIconClass = cn(
     styles.icon,
@@ -25,8 +27,8 @@ export default function Card(props: {
 
   return (
     <figure className={ styles.card }>
-      <div className={ styles.imageWrapper }>
-        <img src={ props.image } alt={ props.description || 'Фотография' } className={ styles.image } />
+      <div className={ styles.imageWrapper } onClick={ () => props.toggleImagePopup(props.imageRegular || props.imageSmall) }>
+        <img src={ props.imageSmall || props.imageRegular } alt={ props.description || 'Фотография' } className={ styles.image } />
       </div>
       <figcaption className={ styles.figcaption }>
         <a className={ styles.photographer } href={ props.photographerProfile } target='_blank' title='Страница фотографа' rel='noreferrer'>{ props.photographerName }</a>
