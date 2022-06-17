@@ -6,6 +6,7 @@ const initialState: PhotosState = {
   error: null,
   page: 1,
   isDisplayLikedPhotos: false,
+  popupImageUrl: null,
 };
 
 export const PhotosReducer = (state: PhotosState = initialState, action: PhotosActions): PhotosState => {
