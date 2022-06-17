@@ -119,6 +119,7 @@ export type PhotosState = {
   error: string | null,
   page: number,
   isDisplayLikedPhotos: boolean,
+  popupImageUrl: string | null,
 }
 
 export enum PhotosActionTypes {
@@ -129,6 +130,7 @@ export enum PhotosActionTypes {
   TOGGLE_LIKE = 'TOGGLE_LIKE',
   REMOVE_PHOTO = 'REMOVE_PHOTO',
   TOGGLE_DISPLAY_LIKED_PHOTOS = 'TOGGLE_DISPLAY_LIKED_PHOTOS',
+  TOGGLE_SHOW_IMAGE_POPUP = 'TOGGLE_SHOW_IMAGE_POPUP',
 }
 
 type FetchPhotosAction = {
@@ -158,6 +160,10 @@ type ToggleDisplayLikedPhotos = {
   type: PhotosActionTypes.TOGGLE_DISPLAY_LIKED_PHOTOS,
   displayLikedPhotos: boolean,
 }
+type toggleShowImagePopup = {
+  type: PhotosActionTypes.TOGGLE_SHOW_IMAGE_POPUP,
+  value: string | null,
+}
 export type PhotosActions =
   FetchPhotosAction
   | FetchPhotosSuccessAction
@@ -166,3 +172,4 @@ export type PhotosActions =
   | RemovePhoto
   | ToggleLike
   | ToggleDisplayLikedPhotos
+  | toggleShowImagePopup
