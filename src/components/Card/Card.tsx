@@ -34,7 +34,7 @@ export default function Card(props: {
         <div className={ styles.iconsBlock }>
           <button className={ heartIconClass } title='Лайкнуть' onClick={ () => props.toggleLike(props.id) }><Heart width='16' height='14'/></button>
           <button className={ styles.icon } title='Удалить' onClick={ () => props.removePhoto(props.id) }><Trash width='14' height='16'/></button>
-          <a className={ styles.icon } href={ props.url } target='_blank' title='Посмотреть на сайте' rel='noreferrer'><NewTab /></a>
+          <a className={ styles.icon } href={ props.url } target='_blank' title='Посмотреть фото на сайте' rel='noreferrer'><NewTab /></a>
         </div>
       </figcaption>
     </figure>
