@@ -28,6 +28,8 @@ export const PhotosReducer = (state: PhotosState = initialState, action: PhotosA
          })]}
      case PhotosActionTypes.TOGGLE_DISPLAY_LIKED_PHOTOS:
        return { ...state, isDisplayLikedPhotos: action.displayLikedPhotos }
+     case PhotosActionTypes.TOGGLE_SHOW_IMAGE_POPUP:
+       return { ...state, popupImageUrl: action.value }
 
      default: return state;
    }
