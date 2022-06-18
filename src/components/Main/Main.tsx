@@ -35,6 +35,9 @@ export default function Main() {
   function showLikedPhotos(value: boolean) {
     toggleDisplayLikedPhotosAC(value);
   }
+  function toggleShowImagePopup(value: string | null) {
+    toggleShowImagePopupAC(value);
+  }
 
   useEffect(() => {
     getPhotos();
@@ -58,13 +61,15 @@ export default function Main() {
                     key={ photo.id }
                     id={ photo.id }
                     url={ photo.links.html }
-                    image={ photo.urls.small }
+                    imageSmall={ photo.urls.small }
+                    imageRegular={ photo.urls.regular }
                     photographerName={ photo.user.name }
                     photographerProfile={ photo.user.links.html }
                     description={ photo.description }
                     liked={ photo.liked_by_user }
                     removePhoto={ removePhoto }
                     toggleLike={ toggleLike }
+                    toggleImagePopup={ toggleShowImagePopup }
                   />
                 )
               })
