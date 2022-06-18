@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/some-cards/static/css/main.b39af5e7.css",
-    "main.js": "/some-cards/static/js/main.268399a0.js",
+    "main.css": "/some-cards/static/css/main.1df6914c.css",
+    "main.js": "/some-cards/static/js/main.dfcdc753.js",
     "static/media/Roboto-Regular.eot": "/some-cards/static/media/Roboto-Regular.30b57652c88c5dbd65de.eot",
     "static/media/Roboto-Regular.ttf": "/some-cards/static/media/Roboto-Regular.25e40da956314b12d333.ttf",
     "static/media/Roboto-Light.eot": "/some-cards/static/media/Roboto-Light.d592a653abb7a57fedd8.eot",
@@ -11,11 +11,11 @@
     "static/media/Roboto-Regular.woff2": "/some-cards/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
     "static/media/Roboto-Light.woff2": "/some-cards/static/media/Roboto-Light.d537674e9e217fa53a13.woff2",
     "index.html": "/some-cards/index.html",
-    "main.b39af5e7.css.map": "/some-cards/static/css/main.b39af5e7.css.map",
-    "main.268399a0.js.map": "/some-cards/static/js/main.268399a0.js.map"
+    "main.1df6914c.css.map": "/some-cards/static/css/main.1df6914c.css.map",
+    "main.dfcdc753.js.map": "/some-cards/static/js/main.dfcdc753.js.map"
   },
   "entrypoints": [
-    "static/css/main.b39af5e7.css",
-    "static/js/main.268399a0.js"
+    "static/css/main.1df6914c.css",
+    "static/js/main.dfcdc753.js"
   ]
 }
