@@ -8,6 +8,7 @@ import Card from '../Card/Card';
 import CardsList from '../CardsList/CardsList';
 import Switcher from '../../common/src/components/Switcher/Switcher';
 import ErrorMessage from '../../common/src/components/ErrorMessage/ErrorMessage';
+import PopupImage from '../PopupImage/PopupImage';
 
 
 export default function Main() {
@@ -75,6 +76,7 @@ export default function Main() {
               })
             }
           </CardsList>
+          { popupImageUrl && <PopupImage url={ popupImageUrl } toggleImagePopup={ toggleShowImagePopup } /> }
           { isLoading ? <Loader/> : <button className={ styles.moreButton } onClick={ nextPage }>Ещё фотографии</button> }
           <ErrorMessage error={ error } />
         </>
