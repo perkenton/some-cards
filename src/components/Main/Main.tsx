@@ -11,8 +11,8 @@ import ErrorMessage from '../../common/src/components/ErrorMessage/ErrorMessage'
 
 
 export default function Main() {
-  const { photos, isLoading, error, page, isDisplayLikedPhotos } = useTypedSelector(state => state.photos);
-  const { fetchPhotosAC, setPhotosPageAC, removePhotoAC, toggleLikeAC, toggleDisplayLikedPhotosAC } = useActions();
+  const { photos, isLoading, error, page, isDisplayLikedPhotos, popupImageUrl } = useTypedSelector(state => state.photos);
+  const { fetchPhotosAC, setPhotosPageAC, removePhotoAC, toggleLikeAC, toggleDisplayLikedPhotosAC, toggleShowImagePopupAC } = useActions();
   const currentPhotos = filterPhotos(photos, isDisplayLikedPhotos);
 
   function filterPhotos(photosArray: Photo[], value: boolean) {
