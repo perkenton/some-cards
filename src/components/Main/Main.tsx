@@ -8,11 +8,12 @@ import Card from '../Card/Card';
 import CardsList from '../CardsList/CardsList';
 import Switcher from '../../common/src/components/Switcher/Switcher';
 import ErrorMessage from '../../common/src/components/ErrorMessage/ErrorMessage';
+import PopupImage from '../PopupImage/PopupImage';
 
 
 export default function Main() {
-  const { photos, isLoading, error, page, isDisplayLikedPhotos } = useTypedSelector(state => state.photos);
-  const { fetchPhotosAC, setPhotosPageAC, removePhotoAC, toggleLikeAC, toggleDisplayLikedPhotosAC } = useActions();
+  const { photos, isLoading, error, page, isDisplayLikedPhotos, popupImageUrl } = useTypedSelector(state => state.photos);
+  const { fetchPhotosAC, setPhotosPageAC, removePhotoAC, toggleLikeAC, toggleDisplayLikedPhotosAC, toggleShowImagePopupAC } = useActions();
   const currentPhotos = filterPhotos(photos, isDisplayLikedPhotos);
 
   function filterPhotos(photosArray: Photo[], value: boolean) {
@@ -34,6 +35,9 @@ export default function Main() {
   }
   function showLikedPhotos(value: boolean) {
     toggleDisplayLikedPhotosAC(value);
+  }
+  function toggleShowImagePopup(value: string | null) {
+    toggleShowImagePopupAC(value);
   }
 
   useEffect(() => {
@@ -58,18 +62,21 @@ export default function Main() {
                     key={ photo.id }
                     id={ photo.id }
                     url={ photo.links.html }
-                    image={ photo.urls.small }
+                    imageSmall={ photo.urls.small }
+                    imageRegular={ photo.urls.regular }
                     photographerName={ photo.user.name }
                     photographerProfile={ photo.user.links.html }
                     description={ photo.description }
                     liked={ photo.liked_by_user }
                     removePhoto={ removePhoto }
                     toggleLike={ toggleLike }
+                    toggleImagePopup={ toggleShowImagePopup }
                   />
                 )
               })
             }
           </CardsList>
+          { popupImageUrl && <PopupImage url={ popupImageUrl } toggleImagePopup={ toggleShowImagePopup } /> }
           { isLoading ? <Loader/> : <button className={ styles.moreButton } onClick={ nextPage }>Ещё фотографии</button> }
           <ErrorMessage error={ error } />
         </>
